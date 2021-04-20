@@ -1,0 +1,22 @@
+{
+  "name": "electrontodoapp",
+  "version": "1.0.0",
+  "description": "to do app ",
+  "main": "app.js",
+  "scripts": {
+    "start": "electron ."
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/iskanderAB/electron-To-Do-App.git"
+  },
+  "author": "ABBASSI iskander",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/iskanderAB/electron-To-Do-App/issues"
+  },
+  "homepage": "https://github.com/iskanderAB/electron-To-Do-App#readme",
+  "dependencies": {
+    "electron": "^12.0.4"
+  }
+}
