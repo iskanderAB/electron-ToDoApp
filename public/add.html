@@ -1,0 +1,22 @@
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <form>
+        <div>
+            <label for="todoTitle">Enter your todo  </label>
+            <input name="todoTitle" type="text" id="todoTitle" autofocus>
+        </div>
+        <button type="submit"> Add </button>
+    </form>
+<script>
+    const electron = require('electron');
+    const {ipcRenderer} = electron;
+    document.querySelector('form').addEventListener('submit',e => {
+       e.preventDefault();
+       const {value}= document.querySelector('#todoTitle');
+       ipcRenderer.send('todo:add',value);
+    });
+</script>
+</body>

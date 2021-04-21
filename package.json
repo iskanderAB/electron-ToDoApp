@@ -4,7 +4,7 @@
   "description": "to do app ",
   "main": "app.js",
   "scripts": {
-    "start": "electron ."
+    "start": "NODE_ENV=dev electron ."
   },
   "repository": {
     "type": "git",

@@ -5,9 +5,14 @@ let mainWindow;
 let addToDoWindow;
 
 app.on('ready',()=>{
-    mainWindow = new BrowserWindow({});
-    mainWindow.loadURL(`file://${__dirname}/main.html`);
-
+    mainWindow = new BrowserWindow({
+        nodeIntegration :true,
+        contextIsolation :false
+    });
+    mainWindow.loadURL(`file://${__dirname}/public/main.html`);
+    mainWindow.on('closed',()=> {
+        app.quit();
+    });
     const mainMenu = Menu.buildFromTemplate(menuTemplate);
     Menu.setApplicationMenu(mainMenu);
 });
@@ -16,8 +21,12 @@ const creatAddNewTodo = () => {
     addToDoWindow = new BrowserWindow({
         width: 300,
         height: 200,
-        title: 'Add New ToDo'
+        title: 'Add New ToDo',
+        isMenuBarAutoHide :true,
+        nodeIntegration :true,
+        contextIsolation :false
     });
+    addToDoWindow.loadURL(`file://${__dirname}/public/add.html`);
     addToDoWindow.removeMenu();
 };
 const menuTemplate =[
@@ -40,15 +49,34 @@ const menuTemplate =[
                 //       return 'ctrl+Q';
                 //   }
                 // },
-                click : () => {
+                click: () => {
                     app.quit();
                 }
             }
         ]
     }
 ];
-// if u have osx system !
-// if(process.platform === 'darwin'){
-//     menuTemplate.unshift({});
-// }
+
+ //if u have osx system !
+ if(process.platform === 'darwin'){
+     menuTemplate.unshift({
+         label: ""
+     });
+ }
+// if mode == developer
+if (process.env.NODE_ENV !== 'prod'){
+    menuTemplate.push({
+       label: 'View',
+       submenu: [
+           {
+               label: 'Toggle developer Tools',
+               accelerator: process.platform === 'darwin' ? 'Command+Alt+I' : 'Ctrl+Shift+I' ,
+               click: (item , focusedWindow)=> {
+                   focusedWindow.toggleDevTools();
+               }
+           }
+       ]
+    });
+}
+
 
