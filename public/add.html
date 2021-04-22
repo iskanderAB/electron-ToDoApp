@@ -1,6 +1,6 @@
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Add New ToDo</title>
 </head>
 <body>
     <form>
@@ -15,8 +15,10 @@
     const {ipcRenderer} = electron;
     document.querySelector('form').addEventListener('submit',e => {
        e.preventDefault();
+        console.log('hello');
        const {value}= document.querySelector('#todoTitle');
        ipcRenderer.send('todo:add',value);
+
     });
 </script>
 </body>

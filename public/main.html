@@ -1,7 +1,22 @@
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title> Iskander To♥Do app </title>
 </head>
 <body>
-<h1> main window  </h1>
+<div>
+    my To do
+</div>
+<ul>
+
+</ul>
+<script>
+    const electron = require('electron');
+    const {ipcRenderer} = electron;
+    ipcRenderer.on('todo:add', (e , todo)=> {
+        console.log(todo);
+        document.querySelector('ul').insertAdjacentHTML('beforebegin',`
+            <li> ${todo}</li>
+        `);
+    })
+</script>
 </body>
